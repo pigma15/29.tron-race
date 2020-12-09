@@ -1,0 +1,65 @@
+* {
+    margin: 0%;
+    box-sizing: content-box;
+}
+body {
+    background-color: hsl(180, 80%, 60%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    perspective: 1vw;
+}
+body > div {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+    div.left {
+        grid-column: 1/2;
+        transform: rotateY(45deg);
+    }
+    div.right {
+        grid-column: 2/3;
+        transform: rotateY(-45deg);
+    }
+        div.col {
+            background-color: white;
+            display: inline-block;
+            position: absolute;
+            height:100%;
+            width: 10%;
+        }
+        div.col:nth-child(2) {
+            background-color: indianred;
+        }
+        div.col:nth-child(3) {
+            background-color: lightblue;
+        }
+body > .runway {
+    background-color: transparent;
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 7fr 13fr 7fr;
+    position: fixed;
+    height: 50vh;
+    margin-top: 50vh;
+}
+    .moto {
+        display: inline-block;
+        grid-column: 2/3;
+    }
+        .moto > img {
+            display: inline-block;
+            height: 40%;
+            position: absolute;
+            left: 50%;
+            bottom: 30%;
+            transform: translate(-50%, 50%);
+            transition: 42ms;
+            transform-origin: 50% 50%;
+        }
