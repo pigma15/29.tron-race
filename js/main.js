@@ -11,6 +11,7 @@ let columnRight3 =  document.querySelector('div.right div.col:nth-child(3)')
 let position = 0;
 let speed = 0;
 let turn = 0;
+let rotate = 0;
 
 
 let columnLeft2Pos = parseFloat(columnLeft2.style.right);
@@ -21,8 +22,7 @@ let columnRight3Pos = parseFloat(columnRight3.style.left);
 
 let moto = document.querySelector('.moto > img');
 let motoSize = parseFloat(moto.style.height);
-let motoPosition = parseFloat(moto.style.left)
-console.log(motoPosition);
+let motoPosition = parseFloat(moto.style.left);
 
 
 
@@ -80,7 +80,6 @@ addEventListener('keyup', event => {
         state = false
         let clock =
         setInterval(() => {
-            console.log(moto.style.height);
             speed -= 1;
             position += speed;
             moto.style.height = `${motoSize - speed}%`
@@ -110,7 +109,9 @@ addEventListener('keydown', event => {
         let clock = 
         setInterval(() => {
             turn++
+            rotate = turn * 4;
             moto.style.left = `${motoPosition - turn}%`;
+            moto.style.transform = `translate(-50%, 50%) rotate(${-rotate}deg)`
             if (turn >= 22) {
                 turn = 21
             }
@@ -127,7 +128,9 @@ addEventListener('keydown', event => {
         let clock = 
         setInterval(() => {
             turn--
+            rotate = turn * 4;
             moto.style.left = `${motoPosition - turn}%`;
+            moto.style.transform = `translate(-50%, 50%) rotate(${-rotate}deg)`
             if (turn <= -22) {
                 turn = -21
             }
@@ -142,6 +145,19 @@ addEventListener('keyup', event => {
     if(event.key === 'a' || event.key === 'd') {
         turnState = 0;
         turn = turn;
+        let i = 0
+            let vertical =
+            setInterval (() => {
+                moto.style.transform = `translate(-50%, 50%) rotate(${-rotate}deg)`;
+                rotate -= turn
+                console.log(rotate);
+                console.log(i);
+                i++
+                if (i > 3 || turnState !== 0) {
+                    clearInterval(vertical)
+                    moto.style.transform = `translate(-50%, 50%) rotate(0deg)`
+                }
+            }, 42)
     };
 })
 
